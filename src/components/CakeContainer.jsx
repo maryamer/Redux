@@ -7,7 +7,7 @@ function CakeContainer() {
   // useSelector :
   // 1.accepts a function as its parameter : selector funcition
   //  2.returns the value returned by selector functipn
-  const state = useSelector((state) => state); //=>{numOfCakes : 10}
+  const state = useSelector((state) => state.cake); //=>{numOfCakes : 10}
 
   // returns a reference to the dispatch function in redux store
   const dispatch = useDispatch();
