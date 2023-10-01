@@ -6,7 +6,7 @@ function cakeReducer(state = initialState, action) {
     case "BUY_CAKE":
       return {
         ...state,
-        numOfCakes: state.numOfCakes--,
+        numOfCakes: state.numOfCakes - (action.payload ? action.payload : 1),
       };
     default:
       return state;

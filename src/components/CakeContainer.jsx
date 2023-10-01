@@ -1,15 +1,30 @@
-// import React from "react";
-// import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function CakeContainer() {
+  const [value, setValue] = useState(1);
   // useSelector :
   // 1.accepts a function as its parameter : selector funcition
-  //   const state = useSelector((state) => state);
-  //   console.log(state);
+  //  2.returns the value returned by selector functipn
+  const state = useSelector((state) => state); //=>{numOfCakes : 10}
+
+  // returns a reference to the dispatch function in redux store
+  const dispatch = useDispatch();
   return (
     <div>
-      <h2>Cake number :10</h2>
-      <button>buy cake</button>
+      <input
+        type="numbe "
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <h2>Cake number :{state.numOfCakes}</h2>
+      <button onClick={() => dispatch({ type: "BUY_CAKE", payload: value })}>
+        buy cake
+      </button>
+      {/* <button onClick={() => dispatch({ type: "BUY_CAKE" })}>buy cake</button>
+      <button onClick={() => dispatch({ type: "BUY_CAKE", payload: 2 })}>
+        buy two cake
+      </button> */}
     </div>
   );
 }
