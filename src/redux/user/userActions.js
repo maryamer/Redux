@@ -18,15 +18,15 @@ function fetchUsersFailure(err) {
 }
 export function fetchUsers() {
   return (dispatch) => {
-    dispatch(() => fetchUsersRequest());
+    dispatch(fetchUsersRequest());
     axios
       .get("https://jsonplaceholder.typicode.com/users")
 
       .then((res) => {
-        dispatch(() => fetchUsersSuccess(res.data));
+        dispatch(fetchUsersSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(() => fetchUsersFailure(err.message));
+        dispatch(fetchUsersFailure(err.message));
       });
   };
 }
