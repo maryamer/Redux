@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import CakeContainer from "./components/CakeContainer";
 import MilkContainer from "./components/MilkContainer";
+import UsersList from "./components/UsersList";
 import store from "./redux/store";
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
     <Provider store={store}>
       <CakeContainer />
       <MilkContainer />
+      <hr />
+      <UsersList />
     </Provider>
   );
 }

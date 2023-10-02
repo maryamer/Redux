@@ -1,8 +1,32 @@
-import { BUY_MILK } from ".//milkTypes";
+import axios from "axios";
+import {
+  FETCH_USERS_FAILURE,
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_SUCCESS,
+} from "./userTypes";
 
-export function buyMilk(payload = 1) {
+function fetchUsersRequest() {
   return {
-    type: BUY_MILK,
-    payload: payload,
+    type: FETCH_USERS_REQUEST,
+  };
+}
+function fetchUsersSuccess(user) {
+  return { type: FETCH_USERS_SUCCESS, payload: user };
+}
+function fetchUsersFailure(err) {
+  return { type: FETCH_USERS_SUCCESS, payload: err };
+}
+export function fetchUsers() {
+  return (dispatch) => {
+    dispatch(() => fetchUsersRequest());
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+
+      .then((res) => {
+        dispatch(() => fetchUsersSuccess(res.data));
+      })
+      .catch((err) => {
+        dispatch(() => fetchUsersFailure(err.message));
+      });
   };
 }
