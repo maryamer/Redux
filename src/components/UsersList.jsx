@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../redux/user/userActions";
+import { getAsyncUsers } from "../features/user/userSlice";
 
 export default function UsersList() {
   const dispatch = useDispatch();
   const { loading, error, data } = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(getAsyncUsers());
   }, []);
   return (
     <div>
@@ -20,7 +20,6 @@ export default function UsersList() {
           {data && data.map((item) => <li key={item.id}>{item.name}</li>)}
         </div>
       )}
-      {/* {data && data.map((item) => <p>{item.name}</p>)} */}
     </div>
   );
 }
